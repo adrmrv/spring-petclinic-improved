@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout}">
+
+<head>
+  <title>Veterinary - Petclinic</title>
+</head>
+
+<body>
+
+<section layout:fragment="page-content">
+<div class="container">
+<p>
+<h1>Veterinary</h1>
+</p>
+
+<form method="post" th:action="@{/veterinary/edit/{Id}(Id=${Id})}">
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First name</label>
+    <input type="text" class="form-control" id="firstName" name="FirstName" th:value="${vet.FirstName}">
+  </div>
+  <div class="mb-3">
+    <label for="lastname" class="form-label">Last name</label>
+    <input type="text" class="form-control" id="lastname" name="LastName" th:value="${vet.LastName}">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+
+</section>
+
+</body>
+
+<th:block layout:fragment="page-scripts">
+<script>
+</script>
+</th:block>
+
+</html>

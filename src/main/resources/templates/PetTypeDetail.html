@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout}">
+
+<head>
+  <title>Pet type - Petclinic</title>
+</head>
+
+<body>
+
+<section layout:fragment="page-content">
+<div class="container">
+<p>
+<h1>Pet type</h1>
+</p>
+
+
+<form th:action="@{/pet/types/update}" th:object="${petType}" method="post">
+    <div class="col-4">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" th:field="*{Name}">
+        <input type="hidden" th:field="*{Id}">
+    </div>
+    <div class="col-4">
+        <button class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+</body>
+</html>

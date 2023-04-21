@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Pets - Petclinic</title>
+</head>
+
+<body>
+
+    <section layout:fragment="page-content">
+        <div class="container">
+            <p>
+            <h1><i class="bi bi-list-ul"></i> Pets</h1>
+            </p>
+
+            <p>
+            <form class="row gy-2 gx-3 align-items-center">
+                <div class="col-auto">
+                    <input type="text" name="name" class="form-control" th:value="${name}" id="autoSizingInput"
+                        placeholder="Name">
+                </div>
+                <div class="col-auto">
+                    <select name="pt" id="" class="form-select">
+                        <option value="0">All types</option>
+                        <option th:each="p : ${petTypes}" th:text="${p.Name}" th:selected="${p.Id==pt}"
+                            th:value="${p.Id}"></option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search"></i>
+                        Search
+                    </button>
+                </div>
+            </form>
+            </p>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Owner</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${pets}">
+                        <td th:text="${p.Id}"></td>
+                        <td th:text="${p.Name}"></td>
+                        <td th:text="${p.PetType}"></td>
+                        <td th:text="${p.Owner}"></td>
+                        <td>
+                            <form th:action="@{/pets/delete/{Id}(Id=${p.Id})}" method="post">
+                                <a class="btn btn-success btn-sm" th:href="@{/pets/{Id}(Id=${p.Id})}">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash3"></i> Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:unless="${not #lists.isEmpty(pets)}">
+                        <td colspan="5">No pets found</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <nav>
+                <ul class="pagination">
+                    <li th:each="page : ${pages}" class="page-item" th:classappend="${page.htmlClass}">
+                        <a th:href="${page.url}" class="page-link">
+                            [[${page.displayName}]]
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <a class="btn btn-primary btn-sm" href="pets/add">
+                <i class="bi bi-plus"></i>
+                Add pet
+            </a>
+        </div>
+    </section>
+</body>

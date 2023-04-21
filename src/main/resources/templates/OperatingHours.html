@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Operating hours - Petclinic</title>
+    <style type="text/css">
+        td label {
+            display: block;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section layout:fragment="page-content">
+        <div class="container">
+            <p>
+            <h1><i class="bi bi-clock"></i> Operating hours</h1>
+            </p>
+
+            <ul class="nav nav-tabs mb-2">
+
+                <li th:each="vet : ${vets}" th:class="'nav-item'">
+                    <a class="nav-link" 
+                    th:href="@{/hours/{Id}(Id=${vet.Id})}"
+                    th:classappend="${vet.Id} == ${Id} ? 'active' : ''">
+                        Dr [[${vet.FirstName}]] [[${vet.LastName}]]</a>
+                </li>
+                
+            </ul>
+
+            <form th:action="@{/hours/{Id}(Id=${Id})}" method="post">
+                <table class="table table-bordered table-striped table-sm fs-6">
+                    <thead>
+                        <tr>
+                            <th>Hour</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="days : ${DayHourSlot}">
+                            <td>[[${days.HourLabel}]]</td>
+                            <td th:each="d : ${days.data}">
+                                <label>
+                                    <input type="checkbox" th:checked="${d.enabled}" th:name="|${d.Hour}-${d.Day}|" />
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="6">
+                                <button class="btn btn-primary">Submit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+        </div>
+    </section>
+
+
+</body>
+
+</html>

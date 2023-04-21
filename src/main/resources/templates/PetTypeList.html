@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout}">
+
+<head>
+  <title>Pet types - Petclinic</title>
+</head>
+
+<body>
+
+<section layout:fragment="page-content">
+<div class="container">
+<p>
+<h1><i class="bi bi-wrench"></i> Pet types</h1>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+	<tr>
+		<th>N°</th>
+		<th>Name</th>
+		<th>Action</th>
+	</tr>
+</thead>
+<tbody>
+	<tr th:each="p : ${petTypes}">
+		<td>[[${p.Id}]]</td>
+		<td>[[${p.Name}]]</td>
+		<td>
+			<form th:action="@{/pet/types/delete/{Id}(Id=${p.Id})}" method="post">
+			<a class="btn btn-success btn-sm" th:href="@{/pet/types/{Id}(Id=${p.Id})}"><i class="bi bi-pencil-square"></i> Edit</a>
+			<button class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i> Delete</button>
+			</form>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+<hr/>
+<p><h2>Add new pet type</h2></p>
+
+<form class="row" th:action="@{/pet/types/add}" method="post">
+  <div class="col-md-4">
+    <input type="text" class="form-control" name="Name" required placeholder="Name">
+  </div>
+  
+  <div class="col-md-4">
+    <button class="btn btn-primary" type="submit">Add new type</button>
+  </div>
+</form>
+</div>
+
+</section>
+
+</body>
+
+<th:block layout:fragment="page-scripts">
+<script>
+</script>
+</th:block>
+
+</html>

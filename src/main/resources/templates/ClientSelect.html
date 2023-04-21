@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout}">
+
+<head>
+  <title>Select client - Petclinic</title>
+</head>
+
+<body>
+
+<section layout:fragment="page-content">
+<div class="container">
+<p>
+<h1>Select client</h1>
+</p>
+
+<p>
+<form class="row gy-2 gx-3 align-items-center">
+  <div class="col-auto">
+    <input type="text" name="name" class="form-control" 
+    	th:value="${name}"
+    	id="autoSizingInput" placeholder="Name">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+</form>
+</p>
+
+<table class="table table-bordered table-striped">
+<thead>
+	<tr>
+		<th>N°</th>
+		<th>First name</th>
+		<th>Last name</th>
+		<th>E-mail</th>
+		<th>Date of birth</th>
+		<th>Action</th>
+	</tr>
+</thead>
+<tbody>
+	<tr th:each="client : ${clients}">
+		<td>[[${client.Id}]]</td>
+		<td th:text="${client.FirstName}"></td>
+		<td th:text="${client.LastName}"></td>
+		<td>[[${client.Email}]]</td>
+		<td th:text="${#temporals.format(client.BirthDate, 'MM/dd/yyyy')}"></td>
+		<td>
+			<a class="btn btn-success btn-sm"
+                th:href="@{/pets/add?ClientId={Id}(Id=${client.Id})}">
+                <i class="bi bi-check-lg"></i> Select
+            </a>
+		</td>
+	</tr>
+	<tr th:unless="${not #lists.isEmpty(clients)}">
+        <td colspan="6">No clients found</td>
+    </tr>
+</tbody>
+</table>
+
+<nav>
+    <ul class="pagination">
+        <li th:each="page : ${pages}" class="page-item" th:classappend="${page.htmlClass}">
+	            <a th:href="${page.url}" class="page-link">
+                [[${page.displayName}]]
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<a class="btn btn-primary btn-sm" href="/clients/add"><i class="bi bi-plus"></i> Add client</a>
+
+</div>
+
+</section>
+
+</body>
+
+<th:block layout:fragment="page-scripts">
+<script>
+</script>
+</th:block>
+
+</html>

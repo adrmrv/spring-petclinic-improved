@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap-icons/1.10.3/font/bootstrap-icons.css" />
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Petclinic</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/"><i class="bi bi-house"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/appointments/new"><i class="bi bi-calendar4-event"></i> New appointment</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/schedule"><i class="bi bi-calendar3"></i> Schedule</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/clients"><i class="bi bi-people-fill"></i> Clients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/pets"><i class="bi bi-list-ul"></i> Pets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/veterinaries"><i class="bi bi-person-circle"></i> Veterinaries</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/hours"><i class="bi bi-clock"></i> Operating hours</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/pet/types"><i class="bi bi-wrench"></i> Pet types</a>
+        </li>
+
+<!--        <li class="nav-item dropdown">-->
+<!--          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Dropdown-->
+<!--          </a>-->
+<!--          <ul class="dropdown-menu">-->
+<!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--            <li><hr class="dropdown-divider"></li>-->
+<!--            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+<!--          </ul>-->
+<!--        </li>-->
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<section layout:fragment="page-content">
+</section>
+
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+
+<th:block layout:fragment="page-scripts"></th:block>
+
+</body>
+
+</html>

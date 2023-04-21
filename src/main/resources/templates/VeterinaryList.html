@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout}">
+
+<head>
+  <title>Veterinaries - Petclinic</title>
+</head>
+
+<body>
+
+<section layout:fragment="page-content">
+<div class="container">
+<p>
+<h1><i class="bi bi-person-circle"></i> Veterinaries</h1>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+	<tr>
+		<th>N°</th>
+		<th>Name</th>
+		<th>Action</th>
+	</tr>
+</thead>
+<tbody>
+	<tr th:each="vet : ${vets}">
+		<td>[[${vet.Id}]]</td>
+		<td th:text="|Dr ${vet.FirstName} ${vet.LastName}|"></td>
+		<td>
+			<a class="btn btn-success btn-sm" th:href="@{/veterinary/edit/{Id}(Id=${vet.Id})}"><i class="bi bi-pencil-square"></i> Edit</a>
+			<a class="btn btn-danger btn-sm" th:href="@{/veterinary/delete/{Id}(Id=${vet.Id})}"><i class="bi bi-trash3"></i> Delete</a>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+<a class="btn btn-primary btn-sm" href="/veterinary/add"><i class="bi bi-plus"></i> Add veterinary</a>
+
+</div>
+
+</section>
+
+</body>
+
+<th:block layout:fragment="page-scripts">
+<script>
+</script>
+</th:block>
+
+</html>
